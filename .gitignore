@@ -1,0 +1,8 @@
+# Ignore all files
+*
+
+# Allow Verilog and SystemVerilog files
+!*.v
+!*.sv
+
+!.gitignore
