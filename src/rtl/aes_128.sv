@@ -4,9 +4,9 @@ module aes_128 (
     output logic [127:0] out_bus   // 128-bit output bus
 );
 
-    logic [127:0] key_matrix[0:10]
+    logic [127:0] key_matrix[0:10];
 
-    logic [127:0] state[0:40]
+    logic [127:0] state[0:40];
 
     key_expansion ke(.in_bus(key), .out_bus({
         key_matrix[0],
