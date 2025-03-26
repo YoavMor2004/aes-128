@@ -24,10 +24,13 @@ module aes_128_tb;
         outfile = $fopen("output.txt", "w");
 
         if (infile == 0) begin
+            if (outfile != 0)
+                $fclose(outfile);
             $display("ERROR: Couldn't open input file.");
             $finish;
         end
         if (outfile == 0) begin
+            $fclose(infile);
             $display("ERROR: Couldn't open output file.");
             $finish;
         end
@@ -38,6 +41,10 @@ module aes_128_tb;
             in_bus = plaintext;
             key = round_key;
 
+            $display("in_bus: %032h", in_bus);
+            $display("key:    %032h", key);
+
+            // This is not necessery, we do not have a delay model
             #10; // Wait for combinational logic to settle
 
             $fwrite(outfile, "%032h\n", out_bus); // 128-bit hex = 32 hex characters
