@@ -11,17 +11,17 @@ module aes_128 (
     logic [127:0] state[0:40];
 
     key_expansion ke(.in_bus(key), .out_bus({
-        key_matrix[0],
-        key_matrix[1],
-        key_matrix[2],
-        key_matrix[3],
-        key_matrix[4],
-        key_matrix[5],
-        key_matrix[6],
+        key_matrix[10],
+        key_matrix[9],
+        key_matrix[8],
         key_matrix[7],
         key_matrix[8],
-        key_matrix[9],
-        key_matrix[10]
+        key_matrix[5],
+        key_matrix[4],
+        key_matrix[3],
+        key_matrix[2],
+        key_matrix[1],
+        key_matrix[0]
     }));
 
     assign state[0] = in_bus;
