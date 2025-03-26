@@ -15,7 +15,7 @@ module aes_128 (
         key_matrix[9],
         key_matrix[8],
         key_matrix[7],
-        key_matrix[8],
+        key_matrix[6],
         key_matrix[5],
         key_matrix[4],
         key_matrix[3],
