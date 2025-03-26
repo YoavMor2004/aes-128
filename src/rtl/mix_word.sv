@@ -9,10 +9,10 @@ module mix_word (
 
     logic [3:0][7:0] out_column;
 
-    assign in_column[0] = in_byte[7:0];
-    assign in_column[1] = in_byte[15:8];
-    assign in_column[2] = in_byte[23:16];
-    assign in_column[3] = in_byte[31:24];
+    assign in_column[0] = in_byte[31:24];
+    assign in_column[1] = in_byte[23:16];
+    assign in_column[2] = in_byte[15:8];
+    assign in_column[3] = in_byte[7:0];
 
     times_2 t20(.x(in_column[0]), .x_times_2(in_column_times_2[0]));
     times_2 t21(.x(in_column[1]), .x_times_2(in_column_times_2[1]));
@@ -29,9 +29,9 @@ module mix_word (
     assign out_column[2] = in_column[0]         ^ in_column[1]         ^ in_column_times_2[2] ^ in_column_times_3[3];
     assign out_column[3] = in_column_times_3[0] ^ in_column[1]         ^ in_column[2]         ^ in_column_times_2[3];
 
-    assign out_byte[7:0]   = out_column[0];
-    assign out_byte[15:8]  = out_column[1];
-    assign out_byte[23:16] = out_column[2];
-    assign out_byte[31:24] = out_column[3];
+    assign out_byte[31:24] = out_column[0];
+    assign out_byte[23:16] = out_column[1];
+    assign out_byte[15:8]  = out_column[2];
+    assign out_byte[7:0]   = out_column[3];
 
 endmodule
