@@ -29,6 +29,11 @@ module shift_rows (
     assign in_matrix[3][3] = in_bus[127:120];
 
 
+    assign out_matrix[0][0] = in_matrix[0][0];
+    assign out_matrix[0][1] = in_matrix[0][1];
+    assign out_matrix[0][2] = in_matrix[0][2];
+    assign out_matrix[0][3] = in_matrix[0][3];
+    
     assign out_matrix[1][0] = in_matrix[1][1];
     assign out_matrix[1][1] = in_matrix[1][2];
     assign out_matrix[1][2] = in_matrix[1][3];
