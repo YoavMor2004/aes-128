@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module aes_128 (
     input  logic [127:0] in_bus,   // 128-bit input bus
     input  logic [127:0] key,      // 128-bit input key

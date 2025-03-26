@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module shift_rows (
     input  logic [127:0] in_bus,   // 128-bit input bus
     output logic [127:0] out_bus   // 128-bit output bus

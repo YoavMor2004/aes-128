@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module key_schedule (
     input  logic [127:0] in_bus,   // 128-bit input bus
     input  logic [31:0] rcon,      //  32-bit input bus

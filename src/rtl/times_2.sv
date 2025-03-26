@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module times_2 (
     input  logic [7:0] x,          // byte input bus
     output logic [8:0] x_times_2   // byte output bus
