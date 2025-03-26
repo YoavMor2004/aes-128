@@ -1,1 +1,1 @@
-xrun -f ../src/run.f -sv -access +rw-c -gui -INPUT ../scripts/simulation.tcl -neverwarn
+xrun -f ../src/run.f -sv -INPUT ../scripts/simulation.tcl -neverwarn
