@@ -2,12 +2,17 @@
 
 module aes_128_tb;
 
+    logic clk;
+    logic rst_n;
+
     logic [127:0] in_bus;
     logic [127:0] key;
     logic [127:0] out_bus;
 
     // Instantiate the AES module
     aes_128 dut (
+        .clk(clk),
+        .rst_n(rst_n),
         .in_bus(in_bus),
         .key(key),
         .out_bus(out_bus)
