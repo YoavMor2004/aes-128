@@ -18,16 +18,16 @@ set IO_TECHNOLOGY "TSMC65_IO"
 #       Port Definitions (From Verilog)
 #############################################
 ###### Clocks
-set design(CLK_NAME) <MY CLOCK NAME> 
-    set design(clock_list) [list $design(CLK_NAME)]
-set design(CLK_PORT) <MY CLOCK PORT NAME>
-    set design(clock_port_list) [list $design(CLK_PORT)]
-set design(CLK_PERIOD) 10.0
-    set design(clock_period_list) [list $design(CLK_PERIOD)]
+set design(CLK_NAME)          "clk"
+set design(clock_list)        [list $design(CLK_NAME)]
+set design(CLK_PORT)          "clk"
+set design(clock_port_list)   [list $design(CLK_PORT)]
+set design(CLK_PERIOD)        10.0
+set design(clock_period_list) [list $design(CLK_PERIOD)]
 # For additional clocks, lappend to clock_list, clock_port_list, clock_period_list
 
 # Reset
-set design(RST_PORT) <MY RESET PORT NAME>
+set design(RST_PORT) "rst_n"
 
 # Scan
 if {$design(HAS_SCAN)=="yes"} {
@@ -48,8 +48,8 @@ if {$design(FULLCHIP_OR_MACRO) == "FULLCHIP" } {
 #       SDC Settings
 #############################################
 # IO Constraints
-set design(INPUT_DELAY) <MY GENERAL INPUT DELAY>
-set design(OUTPUT_DELAY) <MY GENERAL OUTPUT DELAY>
+set design(INPUT_DELAY)      [expr $design(CLK_PERIOD)/4.0]
+set design(OUTPUT_DELAY)     [expr $design(CLK_PERIOD)/4.0]
 set design(INPUT_TRANSITION) [expr $design(CLK_PERIOD)/10.0]
 
 # Clock Constraints 
@@ -121,12 +121,12 @@ if {$design(FULLCHIP_OR_MACRO) == "FULLCHIP" } {
 #############################################
 #       Power Simulation Stuff
 #############################################
-set design(tb_name)  <MY TEST BENCH NAME>
-set design(dut_name) <MY DUT INSTANCE NAME>
+set design(tb_name)  "aes_128_tb"
+set design(dut_name) "aes_128"
 set design(vcd_file) "$design(export_dir)/pwr/$design(TOPLEVEL).vcd"
 set design(tcf_file) "../export/$design(TOPLEVEL).tcf"
-set design(power_report_start_time) <MY START TIME VCD RECORDING>
-set design(power_report_end_time)   <MY END TIME VCD RECORDING>
+set design(power_report_start_time) 0
+set design(power_report_end_time)   23000
 #############################################
 #       Print values to debug file
 #############################################
