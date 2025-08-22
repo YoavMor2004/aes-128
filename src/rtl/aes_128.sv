@@ -10,14 +10,14 @@ module aes_128 (
 );
 
     // Added a register in an attempt to fix timing groups
-    logic state;
-    logic next_state;
-    assign next_state = 0;
+    logic register;
+    logic next_register;
+    assign next_register = 0;
     always @(posedge clk or negedge rst_n) begin
         if (~rst_n)
-            state <= 0;
+            register <= 0;
         else
-            state <= next_state;
+            register <= next_register;
     end
 
     logic [127:0] key_matrix[0:10];
