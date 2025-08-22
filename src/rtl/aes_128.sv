@@ -9,6 +9,17 @@ module aes_128 (
     output logic [127:0] out_bus   // 128-bit output bus
 );
 
+    // Added a register in an attempt to fix timing groups
+    logic state;
+    logic next_state;
+    assign next_state = 0;
+    always @(posedge clk or negedge rst_n) begin
+        if (~rst_n)
+            state <= 0;
+        else
+            state <= next_state;
+    end
+
     logic [127:0] key_matrix[0:10];
 
     logic [127:0] state[0:40];
