@@ -1,6 +1,7 @@
 set design(TOPLEVEL) "aes_128"
 set debug_file "debug.txt"
 set runtype "synthesis"
+set combinational 1
 
 # Variables
 set mmmc_or_simple "simple"; # "simple" - using "read_libs"
@@ -130,7 +131,11 @@ check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check
 ###################################################################################
 ## Define cost groups (reg2reg, in2reg, reg2out, in2out)
 ###################################################################################
-enics_default_cost_groups
+if $combinational {
+    enics_default_cost_groups
+} else {
+    aes_128_default_cost_groups
+}
 enics_report_timing $design(synthesis_reports)
 
 

@@ -103,6 +103,18 @@ proc enics_default_cost_groups {} {
     } 
 }
 
+proc combinational_default_cost_groups {} {
+    global runtype design
+    if {$runtype == "synthesis"} {
+        # in2out
+        define_cost_group -name in2out -design $design(TOPLEVEL)
+        path_group -from [all_inputs]  -to [all_outputs] -group in2out -name in2out
+        lappend design(cost_groups) "in2out"  
+    } elseif {$runtype == "pnr" } {
+         create_basic_path_groups -expanded 
+    } 
+}
+
 ##################################################
 #       enics_report_timing
 #       -------------------
