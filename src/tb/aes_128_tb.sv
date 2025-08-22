@@ -25,7 +25,7 @@ module aes_128_tb;
 
     initial begin
         // Open input and output files
-        infile = $fopen("../inputs/input.txt", "r");
+        infile = $fopen("../input/input.txt", "r");
         outfile = $fopen("output.txt", "w");
 
         if (infile == 0) begin
