@@ -132,9 +132,9 @@ check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check
 ## Define cost groups (reg2reg, in2reg, reg2out, in2out)
 ###################################################################################
 if $combinational {
-    aes_128_default_cost_groups
-} else {
     combinational_default_cost_groups
+} else {
+    enics_default_cost_groups
 }
 enics_report_timing $design(synthesis_reports)
 
@@ -157,8 +157,8 @@ set_db syn_map_effort low
 set_db syn_opt_effort low
 suppress_messages "ST-110 ST-112"
 
-# Don't use standard cell
-set_db "MXT2_X4M_A9TR" .avoid true
+# # Don't use standard cell
+# set_db "MXT2_X4M_A9TR" .avoid true
 
 if {$phys_synth_type == "floorplan"} {
     # Synthesize to generics and place generics in floorplan
