@@ -134,7 +134,7 @@ check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check
 if $combinational {
     aes_128_default_cost_groups
 } else {
-    enics_default_cost_groups
+    combinational_default_cost_groups
 }
 enics_report_timing $design(synthesis_reports)
 
