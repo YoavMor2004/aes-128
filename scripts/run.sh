@@ -1,1 +1,1 @@
-xrun -f ../src/run.f -sv -INPUT ../scripts/simulation.tcl -neverwarn
+xrun -f ../src/src_list_aes_128.txt -sv -INPUT ../scripts/simulation.tcl -neverwarn
