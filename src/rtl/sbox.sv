@@ -5,7 +5,7 @@ module sbox (
     output logic [7:0] out_bus   // 8-bit output bus
 );
 
-    logic [7:0] sbox_table [0:255];
+    // logic [7:0] sbox_table [0:255];
 
     // initial begin
     //     sbox_table = '{
