@@ -2,7 +2,7 @@
 #
 # Genus(TM) Synthesis Solution setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 09/02/2025 13:59:16
+#   on 09/04/2025 08:18:57
 #
 # This file can only be run in Genus Common UI mode.
 #
@@ -34,12 +34,12 @@ if {[::legacy::find -design design:aes_128] ne ""} {
 
 # Design
 ################################################################################
-read_netlist -top aes_128 /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/post_elaboartion/aes_128.v
-read_metric -id current /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/post_elaboartion/aes_128.metrics.json
+read_netlist -top aes_128 /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/post_elaboartion/aes_128.v
+read_metric -id current /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/post_elaboartion/aes_128.metrics.json
 
-phys::read_script /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/post_elaboartion/aes_128.g
+phys::read_script /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/post_elaboartion/aes_128.g
 
-phys::read_lec_taf /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/post_elaboartion/aes_128.lec.taf.gz
+phys::read_lec_taf /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/post_elaboartion/aes_128.lec.taf.gz
 puts "\n** Restoration Completed **\n"
 
 

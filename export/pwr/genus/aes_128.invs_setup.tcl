@@ -2,7 +2,7 @@
 #
 # Innovus setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 09/02/2025 14:28:21
+#   on 09/04/2025 08:50:20
 #
 ################################################################################
 #
@@ -37,24 +37,24 @@ set_db timing_time_unit 1ns
 ################################################################################
 source -quiet /tools/cadence/GENUS/21.15/tools/lib/cdn/rc/edi/innovus_procs_common_ui.tcl
 ## Reading FlowKit settings file
-source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.flowkit_settings.tcl
+source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.flowkit_settings.tcl
 
-source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.invs_init.tcl
+source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.invs_init.tcl
 
 # Reading metrics file
 ################################################################################
-read_metric -id current /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.metrics.json
+read_metric -id current /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.metrics.json
 
 ## Reading common preserve file for dont_touch and dont_use preserve settings
-source -quiet /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.preserve.tcl
+source -quiet /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.preserve.tcl
 
 ## Reading Innovus Mode attributes file
-pqos_eval {rcp::read_taf /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.mode_attributes.taf.gz}
+pqos_eval {rcp::read_taf /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.mode_attributes.taf.gz}
 
 
 # Mode Setup
 ################################################################################
-source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.mode
+source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.mode
 
 
 # MSV Setup
@@ -62,7 +62,7 @@ source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/g
 
 # Source cell padding from Genus
 ################################################################################
-source -quiet /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.cell_pad.tcl 
+source -quiet /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.cell_pad.tcl 
 
 
 # Reading write_name_mapping file
@@ -71,19 +71,19 @@ source -quiet /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../expor
       if { [is_attribute -obj_type port original_name] &&
            [is_attribute -obj_type pin original_name] &&
            [is_attribute -obj_type pin is_phase_inverted]} {
-        source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.wnm_attrs.tcl
+        source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.wnm_attrs.tcl
       }
     
 
 # Reading NDR file
-source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.ndr.tcl
+source /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.ndr.tcl
 
 # Reading Instance Attributes file
-pqos_eval { rcp::read_taf /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.inst_attributes.taf.gz}
+pqos_eval { rcp::read_taf /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.inst_attributes.taf.gz}
 
 # Reading minimum routing layer data file
 ################################################################################
-pqos_eval {rcp::load_min_layer_file /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.min_layer {M1 M2 M3 M4 M5 M6 M7 M8 M9 AP} {1 2 3 4 5 6 7 8 9 10}}
+pqos_eval {rcp::load_min_layer_file /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.min_layer {M1 M2 M3 M4 M5 M6 M7 M8 M9 AP} {1 2 3 4 5 6 7 8 9 10}}
 eval_legacy {set edi_pe::pegConsiderMacroLayersUnblocked 1}
 eval_legacy {set edi_pe::pegPreRouteWireWidthBasedDensityCalModel 1}
 

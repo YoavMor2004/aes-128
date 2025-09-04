@@ -2,7 +2,7 @@
 #
 # Genus(TM) Synthesis Solution setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 09/02/2025 14:28:22
+#   on 09/04/2025 08:50:21
 #
 # This file can only be run in Genus Common UI mode.
 #
@@ -34,10 +34,10 @@ if {[::legacy::find -design design:aes_128] ne ""} {
 
 # Design
 ################################################################################
-read_netlist -top aes_128 /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.v
-read_metric -id current /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.metrics.json
+read_netlist -top aes_128 /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.v
+read_metric -id current /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.metrics.json
 
-phys::read_script /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/pwr/genus/aes_128.g
+phys::read_script /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/pwr/genus/aes_128.g
 puts "\n** Restoration Completed **\n"
 
 
@@ -56,8 +56,8 @@ set _slk_ [::legacy::get_attribute slack design:aes_128]
 if {[regexp {^-?[0-9.]+$} $_slk_]} {
   set _slk_ [format %.1f $_slk_]
 }
-if {$_slk_ != "1619.6"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden slack: 1619.6,  current slack: $_slk_"
+if {$_slk_ != "150.6"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden slack: 150.6,  current slack: $_slk_"
 }
 unset _slk_
 # multi-mode slack
@@ -75,8 +75,8 @@ set _cell_area_ [::legacy::get_attribute cell_area design:aes_128]
 if {[regexp {^-?[0-9.]+$} $_cell_area_]} {
   set _cell_area_ [format %.0f $_cell_area_]
 }
-if {$_cell_area_ != "248143"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 248143,  current cell area: $_cell_area_"
+if {$_cell_area_ != "512379"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 512379,  current cell area: $_cell_area_"
 }
 unset _cell_area_
 # net area
@@ -84,7 +84,7 @@ set _net_area_ [::legacy::get_attribute net_area design:aes_128]
 if {[regexp {^-?[0-9.]+$} $_net_area_]} {
   set _net_area_ [format %.0f $_net_area_]
 }
-if {$_net_area_ != "181936"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden net area: 181936,  current net area: $_net_area_"
+if {$_net_area_ != "216585"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden net area: 216585,  current net area: $_net_area_"
 }
 unset _net_area_

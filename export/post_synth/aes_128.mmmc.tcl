@@ -1,6 +1,6 @@
 #################################################################################
 #
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Tue Sep 02 14:27:32 UTC 2025
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Thu Sep 04 08:49:22 UTC 2025
 #
 #################################################################################
 
@@ -43,7 +43,7 @@ create_delay_corner -name default_emulate_delay_corner \
 
 ## constraint_mode
 create_constraint_mode -name default_emulate_constraint_mode \
-    -sdc_files { /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws1/../export/post_synth/aes_128.default_emulate_constraint_mode.sdc }
+    -sdc_files { /data/project/tsmc65/users/moryoav/ws/Project/aes-128/ws0/../export/post_synth/aes_128.default_emulate_constraint_mode.sdc }
 
 ## analysis_view
 create_analysis_view -name default_emulate_view \
