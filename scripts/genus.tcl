@@ -1,7 +1,7 @@
 set design(TOPLEVEL) "aes_128"
 set debug_file "debug.txt"
 set runtype "synthesis"
-set combinational 1
+set combinational 0
 
 # Variables
 set mmmc_or_simple "simple"; # "simple" - using "read_libs"
