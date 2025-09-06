@@ -50,20 +50,32 @@ module aes_128_tb;
         end
 
         // Wait two clock cycles
-        #(cycle_period * 2)
+        #(2 * cycle_period)
         rst_n = 'b1;
         // Read and apply test vectors from file
         while (!$feof(infile)) begin
+            $display("out_bus: %032h", out_bus);
+            $fwrite(outfile, "%032h\n", out_bus); // 128-bit hex = 32 hex characters
+
             $fscanf(infile, "%h %h\n", plaintext, round_key);
             in_bus = plaintext;
             key = round_key;
 
-            #(10 * cycle_period)
             $display("in_bus:  %032h", in_bus);
             $display("key:     %032h", key);
-            $display("out_bus: %032h", out_bus);
 
-            $fwrite(outfile, "%032h\n", out_bus); // 128-bit hex = 32 hex characters
+            integer i;
+            integer j;
+            for (j = 0; j < 9; j = j + 1) begin
+                #cycle_period
+                
+                for (i = 0; i < 4; i = i + 1) begin
+                    // $random returns 32-bit signed, mask lower 32 bits
+                    in_bus[i*32 +: 32] = $random;
+                end
+            end
+
+            #cycle_period
         end
 
         $fclose(infile);
