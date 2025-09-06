@@ -9,3 +9,6 @@ reports/*
 !export/.gitkeep
 !exports/.gitkeep
 !reports/.gitkeep
+
+# For some reason, there's an aes_128.postsyn.v inside inputs. This is a synthesis result and should not be tracked
+inputs/aes_128.postsyn.v
