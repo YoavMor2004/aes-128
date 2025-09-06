@@ -3,16 +3,16 @@ module controller (
     input logic rst_n,
 
     output logic [3:0] index,
-    output logic input_reg_n,
-    output logic valid_ready       // If valid - out_bus is encryption of previous in_bus with previous key
-                                   // If ready - accepts new inputs
+    output logic ready, // If ready on posedge - input is sampled
+    output logic valid, // If valid on posedge - out_bus is encryption of previous in_bus with previous key
+    output logic input_reg_n
 );
 
     logic [3:0] next_index;
 
     always @(posedge clk or negedge rst_n) begin
         if (~rst_n)
-            index <= 4'd9; // Start encryption at the next clock cycle
+            index <= 4'd9; // Sample inputs after the next full cycle
         else            
             index <= next_index;
     end
@@ -33,7 +33,8 @@ module controller (
         endcase
     end
 
+    assign ready       = (index == 4'd0) ? 1 : 0;
+    assign valid       = (index == 4'd9) ? 1 : 0;
     assign input_reg_n = (index == 4'd0) ? 1 : 0;
-    assign valid_ready = (index == 4'd9) ? 1 : 0;
 
 endmodule

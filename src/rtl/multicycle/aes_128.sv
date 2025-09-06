@@ -8,8 +8,8 @@ module aes_128 (
     input  logic [127:0] key,      // 128-bit input key
     output logic [127:0] out_bus,  // 128-bit output bus
 
-    output logic valid_ready       // If valid - out_bus is encryption of previous in_bus with key
-                                   // If ready - accepts new inputs
+    output logic ready, // If ready on posedge - input is sampled
+    output logic valid // If valid - out_bus is encryption of previous in_bus with previous key
 );
     logic input_reg_n;
     logic [3:0] index;
@@ -24,7 +24,7 @@ module aes_128 (
 
     logic [127:0] k;
 
-    controller c(.clk(clk), .rst_n(rst_n), .index(index), .input_reg_n(input_reg_n), .valid_ready(valid_ready));
+    controller c(.clk(clk), .rst_n(rst_n), .index(index), .ready(ready), .valid(valid), .input_reg_n(input_reg_n));
 
     logic [127:0] state;
     logic [127:0] next_state;
@@ -59,7 +59,7 @@ module aes_128 (
 
     assign xor_output_sb_input = (input_reg_n ? in_bus : state) ^ k;
     assign next_state          = mc_output;
-    assign out_bus             = sr_output_mc_input             ^ next_key;
+    assign out_bus             = sr_output_mc_input                         ^ next_key;
 
     key_schedule ks(.in_bus(k                  ), .rcon(rcon), .out_bus(next_key          ));
     sub_bytes    sb(.in_bus(xor_output_sb_input),              .out_bus(sb_output_sr_input));

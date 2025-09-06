@@ -5,6 +5,9 @@ module aes_128_tb;
     parameter cycle_period = 4;
     parameter hcycle_period = cycle_period / 2;
 
+    integer i;
+    integer j;
+
     logic clk;
     logic rst_n;
 
@@ -12,7 +15,8 @@ module aes_128_tb;
     logic [127:0] key;
     logic [127:0] out_bus;
 
-    logic valid_ready;
+    logic ready;
+    logic valid;
 
     // Instantiate the AES module
     aes_128 dut (
@@ -21,21 +25,20 @@ module aes_128_tb;
         .in_bus(in_bus),
         .key(key),
         .out_bus(out_bus),
-        .valid_ready(valid_ready)
+        .ready(ready),
+        .valid(valid)
     );
 
     // File variables
     integer infile, outfile;
-    string in_line;
-    logic [127:0] plaintext, round_key;
 
     initial begin
         clk   = 'b0;
         rst_n = 'b0;
 
         // Open input and output files
-        infile = $fopen("../input/input.txt", "r");
-        outfile = $fopen("output.txt", "w");
+        infile  = $fopen("../input/input.txt", "r");
+        outfile = $fopen("output.txt",         "w");
 
         if (infile == 0) begin
             if (outfile != 0)
@@ -49,33 +52,36 @@ module aes_128_tb;
             $finish;
         end
 
-        // Wait two clock cycles
-        #(2 * cycle_period)
+        for (j = 0; j < 2; j = j + 1) begin
+            for (i = 0; i < 4; i = i + 1) begin
+                // $random returns 32-bit signed, mask lower 32 bits
+                in_bus[i*32 +: 32] = $random;
+                key[i*32 +: 32] = $random;
+            end
+            #cycle_period;
+        end
         rst_n = 'b1;
+        for (i = 0; i < 4; i = i + 1) begin
+            // $random returns 32-bit signed, mask lower 32 bits
+            in_bus[i*32 +: 32] = $random;
+            key[i*32 +: 32] = $random;
+        end
         // Read and apply test vectors from file
         while (!$feof(infile)) begin
-            $display("out_bus: %032h", out_bus);
-            $fwrite(outfile, "%032h\n", out_bus); // 128-bit hex = 32 hex characters
-
-            $fscanf(infile, "%h %h\n", plaintext, round_key);
-            in_bus = plaintext;
-            key = round_key;
-
+            #cycle_period;
+            $fscanf(infile, "%h %h\n", in_bus, key);
             $display("in_bus:  %032h", in_bus);
             $display("key:     %032h", key);
-
-            integer i;
-            integer j;
             for (j = 0; j < 9; j = j + 1) begin
-                #cycle_period
-                
+                #cycle_period;
                 for (i = 0; i < 4; i = i + 1) begin
                     // $random returns 32-bit signed, mask lower 32 bits
                     in_bus[i*32 +: 32] = $random;
+                    key[i*32 +: 32] = $random;
                 end
             end
-
-            #cycle_period
+            $display("out_bus: %032h", out_bus);
+            $fwrite(outfile, "%032h\n", out_bus); // 128-bit hex = 32 hex characters
         end
 
         $fclose(infile);
@@ -84,7 +90,7 @@ module aes_128_tb;
         $finish;
     end
 
-        always begin
+    always begin
         #hcycle_period clk = ~clk;
     end
 
