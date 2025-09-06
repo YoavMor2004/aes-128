@@ -2,8 +2,9 @@
 
 module aes_128_tb;
 
-    parameter cycle_period = 80;
-    parameter hcycle_period = cycle_period / 2;
+    parameter design_cycle_period = 4;
+    parameter cycle_period        = design_cycle_period * 2;
+    parameter hcycle_period       = cycle_period        / 2;
 
     integer i;
     integer j;
