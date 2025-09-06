@@ -215,6 +215,6 @@ enics_start_stage "export_design"
 write_db $design(TOPLEVEL) -to_file "$design(export_dir)/post_synth/$design(TOPLEVEL).db" 
 write_design -base_name "$design(export_dir)/post_synth/$design(TOPLEVEL)" -innovus
 write_hdl > $design(postsyn_netlist)
-write_sdf -ideal_clock_network > "$design(export_dir)/post_synth/$design(TOPLEVEL).sdf"
+write_sdf > "$design(export_dir)/post_synth/$design(TOPLEVEL).sdf"
 write_sdc > "$design(export_dir)/post_synth/$design(TOPLEVEL).sdc" 
 write_design -innovus -db -base_name "$design(export_dir)/pwr/genus/$design(TOPLEVEL)"
