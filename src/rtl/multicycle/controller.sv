@@ -2,13 +2,13 @@ module aes_128 (
     input logic clk,
     input logic rst_n,
 
-    output logic index [3:0],
+    output logic [3:0] index,
     output logic input_reg_n,
     output logic valid_ready       // If valid - out_bus is encryption of previous in_bus with previous key
                                    // If ready - accepts new inputs
 );
 
-    logic next_index [3:0];
+    logic [3:0] next_index;
 
     always @(posedge clk or negedge rst_n) begin
         if (~rst_n)
@@ -33,7 +33,7 @@ module aes_128 (
         endcase
     end
 
-    assign input_reg_n = (index == 0) ? 1 : 0;
-    assign valid_ready = (index == 9) ? 1 : 0;
+    assign input_reg_n = (index == 4'd0) ? 1 : 0;
+    assign valid_ready = (index == 4'd9) ? 1 : 0;
 
 endmodule

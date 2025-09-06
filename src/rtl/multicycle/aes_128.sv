@@ -12,15 +12,15 @@ module aes_128 (
                                    // If ready - accepts new inputs
 );
     logic input_reg_n;
-    logic index [3:0];
+    logic [3:0] index;
 
-    logic xor_output_sb_input [127:0];
-    logic sb_output_sr_input  [127:0];
-    logic sr_output_mc_input  [127:0];
-    logic mc_output           [127:0];
+    logic [127:0] xor_output_sb_input;
+    logic [127:0] sb_output_sr_input ;
+    logic [127:0] sr_output_mc_input ;
+    logic [127:0] mc_output          ;
 
-    logic rcon_msB [7:0];
-    logic rcon     [31:0];
+    logic [7:0]  rcon_msB;
+    logic [31:0] rcon;
 
     controller c(.clk(clk), .rst_n(rst_n), .index(index), .input_reg_n(input_reg_n), .valid_ready(valid_ready));
 
