@@ -1,4 +1,4 @@
-module aes_128 (
+module controller (
     input logic clk,
     input logic rst_n,
 
