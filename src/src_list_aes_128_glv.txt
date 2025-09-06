@@ -1,3 +1,0 @@
-// Add your gatelevel netlist here
-../export/post_synth/aes_128.v
-

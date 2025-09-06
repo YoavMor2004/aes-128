@@ -2,9 +2,10 @@
 set design(FULLCHIP_OR_MACRO) "MACRO"; #FULLCHIP includes IO Ring
 set design(HAS_SCAN) "no"; # Are there scan ports
 
-
-
-
+#############################################
+#     Design Specification
+#############################################
+set design(read_hdl_list)  "$design(project_root)/src/dut_combinational_$design(TOPLEVEL).txt"
 
 #############################################
 #     Technology Definition
@@ -71,9 +72,9 @@ set design(MAX_TRANSITION)  0.35 ; # In ns for SDC (will appear in ps for get_db
 set design(workdir) $env(PWD)
 set design(project_root) "$env(PWD)/.."
 set design(inputs_dir) "$design(project_root)/inputs"
-set design(sourcecode_dir) "$design(project_root)/src/rtl"
+# set design(sourcecode_dir) "$design(project_root)/src/rtl"
 set design(hdl_search_paths) ". $design(sourcecode_dir)"
-set design(read_hdl_list) "$design(sourcecode_dir)/../dut_src_list_$design(TOPLEVEL).txt"
+# set design(read_hdl_list) "$design(sourcecode_dir)/../dut_combinational_$design(TOPLEVEL).txt"
 set design(testbench_dir) "$design(project_root)/src/tb"
 set design(scripts_dir) "$design(project_root)/scripts"
 set design(dbs_dir)     "$design(project_root)/dbs"
