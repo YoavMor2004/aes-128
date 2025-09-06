@@ -2,7 +2,7 @@
 
 module aes_128_tb;
 
-    parameter cycle_period = 40;
+    parameter cycle_period = 80;
     parameter hcycle_period = cycle_period / 2;
 
     integer i;
@@ -31,6 +31,14 @@ module aes_128_tb;
 
     // File variables
     integer infile, outfile;
+
+    // SDF Configuration
+    `ifdef GATE_LEVEL
+        initial 
+        begin 
+            $sdf_annotate("../export/post_synth/aes_128.sdf",dut,,"sdf.log" ,"MAXIMUM"); 
+        end
+    `endif
 
     initial begin
         clk   = 'b0;
