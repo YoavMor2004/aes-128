@@ -1,1 +1,0 @@
-s1(02Sep2025:17:01:45):  xrun -64bit -sv -timescale 1ns/1ps +define+GATE_LEVEL +define+BACKANNOTATION +define+HAS_CLK outputs/exports/post_synth/aes_128_gate.v tb_glv_aes.sv +CLKPERIOD_NS=10.0 -l glv_xcelium.log 
