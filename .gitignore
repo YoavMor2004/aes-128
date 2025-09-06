@@ -1,12 +1,11 @@
-# Ignore all files
-*
-
-# Allow Verilog and SystemVerilog files
-!*.v
-!*.sv
-
 !.gitignore
-!*
 
-ws*
-workspace
+# Ignore all synthesis results
+export/*
+exports/*
+reports/*
+
+# Track .gitkeep files
+!export/.gitkeep
+!exports/.gitkeep
+!reports/.gitkeep
