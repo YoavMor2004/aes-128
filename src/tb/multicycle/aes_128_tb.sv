@@ -2,7 +2,7 @@
 
 module aes_128_tb;
 
-    parameter cycle_period = 40000;
+    parameter cycle_period = 4;
     parameter hcycle_period = cycle_period / 2;
 
     logic clk;
@@ -30,7 +30,7 @@ module aes_128_tb;
     logic [127:0] plaintext, round_key;
 
     initial begin
-        clk   = 'b1;
+        clk   = 'b0;
         rst_n = 'b0;
 
         // Open input and output files

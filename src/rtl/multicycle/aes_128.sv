@@ -22,6 +22,8 @@ module aes_128 (
     logic [7:0]  rcon_msB;
     logic [31:0] rcon;
 
+    logic [127:0] k;
+
     controller c(.clk(clk), .rst_n(rst_n), .index(index), .input_reg_n(input_reg_n), .valid_ready(valid_ready));
 
     logic [127:0] state;
