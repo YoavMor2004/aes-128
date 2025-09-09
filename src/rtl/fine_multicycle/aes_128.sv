@@ -13,10 +13,10 @@ module aes_128 (
 );
     // Control Signals
     logic input_reg_n;
-    logic [1:0] next_state_source
+    logic [1:0] round_step
 
     logic enable_ks;
-    logic [3:0] index;
+    logic [3:0] round_index;
 
     // Nets
     logic [127:0] s                  ;
@@ -38,9 +38,9 @@ module aes_128 (
         .ready(ready),
         .valid(valid),
         .input_reg_n(input_reg_n),
-        .next_state_source(next_state_source),
-        .enable_ks(enable_ks),
-        .index(index)
+        .round_step(round_step),
+        .round_index(round_index),
+        .enable_ks(enable_ks)
     );
 
     // Registers
@@ -56,7 +56,7 @@ module aes_128 (
         key_reg <= next_key;
 
     always @* begin
-        case (index)
+        case (round_index)
             4'd0:    rcon_msB = 8'h01;
             4'd1:    rcon_msB = 8'h02;
             4'd2:    rcon_msB = 8'h04;
@@ -83,7 +83,7 @@ module aes_128 (
 
     // next_state MUX
     always @* begin
-        case (next_state_source)
+        case (round_step)
             2'd0:    next_state = sb_output;
             2'd1:    next_state = sr_output;
             2'd2:    next_state = mc_output;
