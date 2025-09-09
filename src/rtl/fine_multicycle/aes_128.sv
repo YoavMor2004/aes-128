@@ -73,13 +73,12 @@ module aes_128 (
 
     assign rcon = {rcon_msB, 8'h00, 8'h00, 8'h00};
 
-    assign s = input_reg_n ? in_bus : state  ;
     assign k = input_reg_n ? key    : key_reg;
 
-    assign xor_output_sb_input = s         ^ k;
-    assign out_bus             = sr_output ^ key_reg;
+    assign xor_output_sb_input = (input_reg_n ? in_bus : state) ^ k      ;
+    assign out_bus             = sr_output                      ^ key_reg;
 
-    assign next_key = enable_ks ? ks_output : key;
+    assign next_key = enable_ks ? ks_output : key_reg;
 
     // next_state MUX
     always @* begin
@@ -93,7 +92,7 @@ module aes_128 (
 
     key_schedule ks(.in_bus(k                  ), .rcon(rcon), .out_bus(ks_output));
     sub_bytes    sb(.in_bus(xor_output_sb_input),              .out_bus(sb_output));
-    shift_rows   sr(.in_bus(s                  ),              .out_bus(sr_output));
-    mix_columns  mc(.in_bus(s                  ),              .out_bus(mc_output));
+    shift_rows   sr(.in_bus(state              ),              .out_bus(sr_output));
+    mix_columns  mc(.in_bus(state              ),              .out_bus(mc_output));
 
 endmodule
