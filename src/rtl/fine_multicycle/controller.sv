@@ -71,5 +71,6 @@ module controller (
     assign ready       = (round_step == 2'd0 && round_index == 4'd0) ? 1 : 0;
     assign input_reg_n = (round_step == 2'd0 && round_index == 4'd0) ? 1 : 0;
     assign valid       = is_last_step                                       ;
+    assign enable_ks   =  round_step == 2'd0;
 
 endmodule
