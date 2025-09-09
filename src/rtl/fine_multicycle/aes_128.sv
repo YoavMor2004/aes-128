@@ -13,7 +13,7 @@ module aes_128 (
 );
     // Control Signals
     logic input_reg_n;
-    logic [1:0] round_step
+    logic [1:0] round_step;
 
     logic enable_ks;
     logic [3:0] round_index;
