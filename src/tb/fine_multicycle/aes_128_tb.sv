@@ -2,7 +2,7 @@
 
 module aes_128_tb;
 
-    parameter design_cycle_period = 4;
+    parameter design_cycle_period = 2.7;
     parameter cycle_period        = design_cycle_period * 2;
     parameter hcycle_period       = cycle_period        / 2;
 
@@ -73,7 +73,7 @@ module aes_128_tb;
         for (i = 0; i < 4; i = i + 1) begin
             // $random returns 32-bit signed, mask lower 32 bits
             in_bus[i*32 +: 32] = $random;
-            key[i*32 +: 32] = $random;
+            key[i*32 +: 32]    = $random;
         end
         // Read and apply test vectors from file
         while (!$feof(infile)) begin

@@ -13,7 +13,7 @@ module aes_128 (
 );
     // Control Signals
     logic input_reg_n;
-    logic [1:0] round_step
+    logic [1:0] round_step;
 
     logic enable_ks;
     logic [3:0] round_index;
@@ -50,10 +50,16 @@ module aes_128 (
     logic [127:0] key_reg;
     logic [127:0] next_key;
 
-    always @(posedge clk)
-        state   <= next_state;
-    always @(posedge clk)
-        key_reg <= next_key;
+    always @(posedge clk or negedge rst_n)
+        if (~rst_n)
+            state   <= 128'h0;
+        else
+            state   <= next_state;
+    always @(posedge clk or negedge rst_n)
+        if (~rst_n)
+            key_reg <= 128'h0;
+        else
+            key_reg <= next_key;
 
     always @* begin
         case (round_index)

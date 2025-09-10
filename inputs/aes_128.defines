@@ -6,7 +6,7 @@ set design(HAS_SCAN) "no"; # Are there scan ports
 #     Design Specification
 #############################################
 set design(project_root)  "$env(PWD)/.."
-set design(read_hdl_list) "$design(project_root)/src/dut_pipeline_$design(TOPLEVEL).txt"
+set design(read_hdl_list) "$design(project_root)/src/dut_fine_multicycle_$design(TOPLEVEL).txt"
 
 #############################################
 #     Technology Definition
@@ -24,7 +24,7 @@ set design(CLK_NAME)          "clk"
 set design(clock_list)        [list $design(CLK_NAME)]
 set design(CLK_PORT)          "clk"
 set design(clock_port_list)   [list $design(CLK_PORT)]
-set design(CLK_PERIOD)        2.7
+set design(CLK_PERIOD)        2.61
 set design(clock_period_list) [list $design(CLK_PERIOD)]
 # For additional clocks, lappend to clock_list, clock_port_list, clock_period_list
 

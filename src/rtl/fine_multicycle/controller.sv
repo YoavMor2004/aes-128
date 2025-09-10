@@ -19,7 +19,7 @@ module controller (
 
     always @(posedge clk or negedge rst_n) begin
         if (~rst_n)
-            round_step <= 4'd1;  // Sample inputs after the next full cycle
+            round_step <= 2'd1;  // Sample inputs after the next full cycle
         else            
             round_step <= next_round_step;
     end    
@@ -44,7 +44,7 @@ module controller (
     // next_round_index logic
     always @* begin
         if (is_last_round) begin
-            next_round_index = is_last_step ? 4'd0 : 4'd9
+            next_round_index = is_last_step ? 4'd0 : 4'd9;
         end else begin
             if (round_step == 4'd2) begin
                 case (round_index)
@@ -65,12 +65,12 @@ module controller (
         end
     end
 
-    assign is_last_round = round_index == 4'd9
-    assign is_last_step  = is_last_round && (round_step == 2'd1)
+    assign is_last_round = round_index == 4'd9;
+    assign is_last_step  = is_last_round && (round_step == 2'd1);
 
-    assign ready       = (round_step == 2'd0 && round_index == 4'd0) ? 1 : 0;
-    assign input_reg_n = (round_step == 2'd0 && round_index == 4'd0) ? 1 : 0;
-    assign valid       = is_last_step                                       ;
+    assign ready       = round_step == 2'd0 && round_index == 4'd0;
+    assign input_reg_n = round_step == 2'd0 && round_index == 4'd0;
+    assign valid       = is_last_step                             ;
     assign enable_ks   =  round_step == 2'd0;
 
 endmodule
