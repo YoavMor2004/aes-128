@@ -1,25 +1,41 @@
+`timescale 1ns/1ps
+
 module aes_128 (
+    input logic clk,
+    input logic rst_n,
+
     input  logic [127:0] in_bus,   // 128-bit input bus
     input  logic [127:0] key,      // 128-bit input key
     output logic [127:0] out_bus   // 128-bit output bus
 );
+
+    // Added a register in an attempt to fix timing groups
+    logic register;
+    logic next_register;
+    assign next_register = 0;
+    always @(posedge clk or negedge rst_n) begin
+        if (~rst_n)
+            register <= 0;
+        else
+            register <= next_register;
+    end
 
     logic [127:0] key_matrix[0:10];
 
     logic [127:0] state[0:40];
 
     key_expansion ke(.in_bus(key), .out_bus({
-        key_matrix[0],
-        key_matrix[1],
-        key_matrix[2],
-        key_matrix[3],
-        key_matrix[4],
-        key_matrix[5],
-        key_matrix[6],
-        key_matrix[7],
-        key_matrix[8],
+        key_matrix[10],
         key_matrix[9],
-        key_matrix[10]
+        key_matrix[8],
+        key_matrix[7],
+        key_matrix[6],
+        key_matrix[5],
+        key_matrix[4],
+        key_matrix[3],
+        key_matrix[2],
+        key_matrix[1],
+        key_matrix[0]
     }));
 
     assign state[0] = in_bus;

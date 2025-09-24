@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module sub_bytes (
     input  logic [127:0] in_bus,   // 128-bit input bus (4x4 matrix)
     output logic [127:0] out_bus   // 128-bit output bus after SubBytes

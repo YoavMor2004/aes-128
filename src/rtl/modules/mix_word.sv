@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module mix_word (
     input  logic [31:0] in_byte,   // 32-bit input bus
     output logic [31:0] out_byte   // 32-bit output bus

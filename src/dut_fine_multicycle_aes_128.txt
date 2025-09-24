@@ -1,0 +1,14 @@
+../src/rtl/fine_multicycle/aes_128.sv
+
+../src/rtl/fine_multicycle/controller.sv
+
+../src/rtl/modules/key_schedule.sv
+../src/rtl/modules/mix_columns.sv
+../src/rtl/modules/mix_word.sv
+../src/rtl/modules/rot_word.sv
+../src/rtl/modules/sbox.sv
+../src/rtl/modules/shift_rows.sv
+../src/rtl/modules/sub_bytes.sv
+../src/rtl/modules/sub_word.sv
+../src/rtl/modules/times_2.sv
+../src/rtl/modules/times_3.sv

@@ -1,10 +1,15 @@
-# Ignore all files
-*
+# Ignore all synthesis results
+export/*
+exports/*
+reports/*
 
-# Allow Verilog and SystemVerilog files
-!*.v
-!*.sv
+# Track .gitkeep files
+!export/.gitkeep
+!exports/.gitkeep
+!reports/.gitkeep
 
-!.gitignore
-!*/
-!**/.gitkeep
+# For some reason, there's an aes_128.postsyn.v inside inputs. This is a synthesis result and should not be tracked
+inputs/aes_128.postsyn.v
+
+workspace
+ws*
